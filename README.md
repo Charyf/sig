@@ -72,7 +72,7 @@ The rubype gem achieves similar things like sig (and inspired the creation of si
 Add to your `Gemfile`:
 
 ```ruby
-gem 'sig'
+gem 'charyf_sig'
 ```
 
 ## Usage
@@ -201,7 +201,7 @@ Comparison:
 ## Deactivate All Signature Checking
 
 ```ruby
-require 'sig/none' # instead of require 'sig'
+require 'charyf_sig/none' # instead of require 'charyf_sig'
 ```
 
 ## Alternatives for Type Checking and More

@@ -108,6 +108,10 @@ module Sig
   end
 
   def self.matches?(expected, value)
+    # Runtime eval the constants
+    expected = constantize(expected)
+
+    # Match
     case expected
     when Array
       expected.any?{ |expected_element| matches? expected_element, value }
@@ -132,6 +136,16 @@ module Sig
     end
   end
 
+  def self.constantize(expected)
+    if expected.is_a? String
+      return Object.const_get(expected)
+    elsif expected.is_a? Array
+      return expected.map { |el| constantize(el) }
+    end
+
+    expected
+  end
+
   def self.valid_or_formatted_error(expected_argument, argument)
     if !expected_argument.nil? && !matches?(expected_argument, argument)
       format_error(expected_argument, argument)
@@ -142,7 +156,7 @@ module Sig
     case expected
     when Array
       expected.map{ |expected_element| format_error(expected_element, value) }*" OR"
-    when Module
+    when Module, String
       "\n- Expected #{value.inspect} to be a #{expected}, but is a #{value.class}"
     when Symbol
       "\n- Expected #{value.inspect} to respond to :#{expected}"

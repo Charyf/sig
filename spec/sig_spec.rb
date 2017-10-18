@@ -1,4 +1,4 @@
-require_relative "../lib/sig"
+require_relative "../lib/charyf_sig"
 require "minitest/autorun"
 require "minitest/reporters"
 Minitest::Reporters.use! Minitest::Reporters::ProgressReporter.new
@@ -87,6 +87,44 @@ describe Sig do
         Sig.define klass, [Array], :my_method
         assert_raises Sig::ArgumentTypeError do
           instance.my_method(42)
+        end
+      end
+    end
+
+    describe "String" do
+      it "will cast the string to constant and validate" do
+        module A
+          class B
+            module C
+              class D
+              end
+            end
+          end
+        end
+
+        Sig.define klass, ['A::B::C::D'], :my_method
+        instance.my_method(A::B::C::D.new)
+        assert true
+      end
+
+      it "will validate the class" do
+        Sig.define klass, ['String'], :my_method
+        assert_raises Sig::ArgumentTypeError do
+          instance.my_method(:symbol)
+        end
+      end
+
+      it "fails on cast when non existant class is present during runtime" do
+        module A
+          class B
+
+          end
+        end
+
+        Sig.define klass, [['A::B', 'A::C']], :my_method
+
+        assert_raises NameError do
+          instance.my_method(A::B.new)
         end
       end
     end

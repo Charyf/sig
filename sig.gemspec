@@ -3,13 +3,13 @@
 require File.dirname(__FILE__) + "/lib/sig/version"
 
 Gem::Specification.new do |gem|
-  gem.name          = "sig"
+  gem.name          = "charyf_sig"
   gem.version       = Sig::VERSION
   gem.summary       = "Optional Type Assertions for Ruby."
   gem.description   = "Optional Type Assertions for Ruby methods."
-  gem.authors       = ["Jan Lelis"]
-  gem.email         = "mail@janlelis.de"
-  gem.homepage      = "https://github.com/janlelis/sig"
+  gem.authors       = ["Richard Ludvigh"]
+  gem.email         = "richard@ludvigh.sk"
+  gem.homepage      = "https://github.com/Charyf/sig/"
   gem.license       = "MIT"
 
   gem.files         = Dir["{**/}{.*,*}"].select{ |path| File.file?(path) && path !~ /^pkg/ }

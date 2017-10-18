@@ -1,6 +1,6 @@
 # require "sig/none" instead of "sig" to get fake methods that do nothing
 
-require_relative '../sig'
+require_relative '../charyf_sig'
 
 module Kernel
   private

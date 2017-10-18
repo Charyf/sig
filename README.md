@@ -21,6 +21,16 @@ class A
   end
 end
 
+# Modules can be replaced with strings (if the Constants does not exist at the time of interpretation)
+# Above is equivalent to
+class A
+  sig ['Numeric', 'Numeric'], 'Numeric',
+  def mul(a, b)
+    a * b
+  end
+end
+
+
 A.new.mul(4,"3")
 # Sig::ArgumentTypeError:
 # - Expected "3" to be a Numeric, but is a String
@@ -77,6 +87,7 @@ Type    | Meaning
 ------- | -------
 Symbol  | Argument must respond to a method with this name
 Module  | Argument must be of this module
+String  | Will be 'constantized' and asserted as Module
 Array   | Argument can be of any type found in the array
 true    | Argument must be truthy
 false   | Argument must be falsy
@@ -86,7 +97,7 @@ nil     | Wildcard for any argument
 
 ```ruby
 sig [:to_i], Numeric,              # takes any object that responds to :to_i as argument, numeric result
-sig [Numeric], String,             # one numeric argument, string result
+sig [Numeric], 'String',           # one numeric argument, string result
 sig [Numeric, Numeric], String,    # two numeric arguments, string result
 sig [:to_s, :to_s],                # two arguments that support :to_s, don't care about result
 sig nil, String,                   # don't care about arguments, as long result is string

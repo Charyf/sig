@@ -1,5 +1,5 @@
-require_relative "sig/version"
-require_relative "sig/kernel"
+require_relative 'charyf_sig/version'
+require_relative 'charyf_sig/kernel'
 
 module Sig
   class ArgumentTypeError < ArgumentError

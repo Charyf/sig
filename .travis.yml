@@ -1,6 +1,8 @@
 sudo: false
 language: ruby
 
+install: sudo apt-get install openssl libssl-dev
+
 script: bundle exec ruby spec/sig_spec.rb
 
 rvm:

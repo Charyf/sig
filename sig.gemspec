@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-require File.dirname(__FILE__) + "/lib/sig/version"
+require File.dirname(__FILE__) + "/lib/charyf_sig/version"
 
 Gem::Specification.new do |gem|
   gem.name          = "charyf_sig"

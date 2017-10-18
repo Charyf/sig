@@ -10,7 +10,7 @@ script: bundle exec ruby spec/sig_spec.rb
 rvm:
 - 2.2
 - 2.1
-- rbx-2.4.1
+- rbx-2
 - ruby-head
 - jruby-9000
 
@@ -21,3 +21,4 @@ matrix:
   allow_failures:
     - rvm: ruby-head
     - rvm: jruby-9000
+    - rvm: rbx-2

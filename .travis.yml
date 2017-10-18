@@ -10,7 +10,7 @@ script: bundle exec ruby spec/sig_spec.rb
 rvm:
 - 2.2
 - 2.1
-- rbx-2
+- rbx-2.5.2
 - ruby-head
 - jruby-9000
 
